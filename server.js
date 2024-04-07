@@ -68,6 +68,11 @@ io.on("connection", (socket) => {
   }
 });
 
+ // Handle WebRTC signaling data
+ socket.on("webrtc_signal", (data) => {
+  const { room, ...signalData } = data;
+  socket.to(room).emit("webrtc_signal", signalData);
+});
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
