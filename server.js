@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
     socket.join(room);
     console.log(`A user joined room: ${room}`);
 
-    socket.to(roomName).emit("user_joined", { id: socket.id, roomName });
+    socket.broadcast.to(room).emit("message", "A new user has joined the room");
   });
 
   // This is the event handler where the debugging code should go
